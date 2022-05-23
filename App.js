@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { Fragment, useState, useRef } from "react";
 import { StyleSheet, Text, View, Image, Animated } from "react-native";
+import { LoginScreen, GuestScreen } from "./screens";
 import AppIntroSlider from "react-native-app-intro-slider";
-import { GuestScreen, LoginScreen } from "./screens";
-import ThemeConfig from "./theme/themeConfig";
-import { ThemeProvider, createTheme } from "@mui/material";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { NativeBaseProvider, extendTheme } from "native-base";
+import ThemeConfig from "./theme/themeConfig";
+
 const slides = [
   {
     key: 2,
@@ -16,18 +17,18 @@ const slides = [
     backgroundColor: "#fff",
   },
 ];
-
-const theme = createTheme(ThemeConfig);
 const Stack = createNativeStackNavigator();
+const customTheme = extendTheme(ThemeConfig)
 export default function App() {
   const [showRealApp, setShowRealApp] = useState(false);
-  const fadeAnim = useRef(new Animated.Value(2)).current;
+  // const fadeAnim = useRef(new Animated.Value(2)).current;
+  
   const renderItem = ({ item }) => {
     return (
       <View
         style={{
-          width: "100vw",
-          height: "100vh",
+          width: "100%",
+          height: "100%",
           backgroundColor: item.backgroundColor,
           display: "flex",
           justifyContent: "center",
@@ -40,31 +41,34 @@ export default function App() {
   };
   setTimeout(() => {
     setShowRealApp(false);
-    Animated.timing(fadeAnim, {
-      toValue: 0,
-      duration: 3000,
-    });
+    // Animated.timing(fadeAnim, {
+    //   toValue: 0,
+    //   duration: 3000,
+    // });
   }, 2000);
   return (
     <Fragment>
       {showRealApp ? (
-        <Animated.View style={{ opacity: fadeAnim }}>
-          <AppIntroSlider renderItem={renderItem} data={slides} />
-        </Animated.View>
+        <AppIntroSlider renderItem={renderItem} data={slides} />
       ) : (
-        <NavigationContainer>
-          <ThemeProvider theme={theme}>
+        <NativeBaseProvider theme={customTheme}>
+          <NavigationContainer>
             <Stack.Navigator initialRouteName="Login">
               <Stack.Screen
                 options={{ headerShown: false }}
                 name="Login"
                 component={LoginScreen}
+                theme={customTheme}
               />
-              <Stack.Screen name="Guest" component={GuestScreen} />
+              <Stack.Screen
+                name="Guest"
+                component={GuestScreen}
+                options={{ headerShown: false }}
+              />
             </Stack.Navigator>
             <StatusBar />
-          </ThemeProvider>
-        </NavigationContainer>
+          </NavigationContainer>
+        </NativeBaseProvider>
       )}
     </Fragment>
   );
@@ -77,7 +81,7 @@ const styles = StyleSheet.create({
   },
 
   introImage: {
-    width: 365,
-    height: 235,
+    width: 345,
+    height: 220,
   },
 });

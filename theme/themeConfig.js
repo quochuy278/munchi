@@ -1,54 +1,15 @@
-import { createTheme } from "@mui/system";
+import { extendTheme } from "native-base";
 
-const ThemeConfig = createTheme({
-  palette: {
+const ThemeConfig = extendTheme({
+  //Native base default will take 600 for every parameters in colors
+  colors: {
     primary: {
-      light: "#FF6166",
-      main: "#FF6231",
-      dark: "#CC5500",
-      contrastText: "#FFF",
+      500: "#db2777",
+      600: "#FF3537", //Main theme
+      700: "#9d174d",
     },
-    secondary: {
-      light: "#9C9FA4",
-      main: "#8A8D93",
-      dark: "#777B82",
-      contrastText: "#FFF",
-    },
-    success: {
-      light: "#6AD01F",
-      main: "#56CA00",
-      dark: "#4CB200",
-      contrastText: "#FFF",
-    },
-    error: {
-      light: "#FF6166",
-      main: "#FF4C51",
-      dark: "#E04347",
-      contrastText: "#FFF",
-    },
-    warning: {
-      light: "#FFCA64",
-      main: "#FFB400",
-      dark: "#E09E00",
-      contrastText: "#FFF",
-    },
-    info: {
-      light: "#32BAFF",
-      main: "#16B1FF",
-      dark: "#139CE0",
-      contrastText: "#FFF",
-    },
-    pending: {
-      light: "#F5F5F5",
-      main: "#E0E0E0",
-      dark: "#9E9E9E",
-      contrastText: "#FFF",
-    },
-    active: {
-      light: "#F5F5F5",
-      main: "#FF5733",
-      dark: "#F53C14",
-      contrastText: "#FFF",
+    black: {
+      600: "#000000",
     },
     grey: {
       50: "#FAFAFA",
@@ -66,7 +27,94 @@ const ThemeConfig = createTheme({
       A400: "#616161",
       A700: "#303030",
     },
+    fontConfig: {
+      Roboto: {
+        100: {
+          normal: "Roboto-Light",
+          italic: "Roboto-LightItalic",
+        },
+        200: {
+          normal: "Roboto-Light",
+          italic: "Roboto-LightItalic",
+        },
+        300: {
+          normal: "Roboto-Light",
+          italic: "Roboto-LightItalic",
+        },
+        400: {
+          normal: "Roboto-Regular",
+          italic: "Roboto-Italic",
+        },
+        500: {
+          normal: "Roboto-Medium",
+        },
+        600: {
+          normal: "Roboto-Medium",
+          italic: "Roboto-MediumItalic",
+        },
+        // Add more variants
+        700: {
+          normal: "Roboto-Bold",
+        },
+        800: {
+          normal: "Roboto-Bold",
+          italic: "Roboto-BoldItalic",
+        },
+        900: {
+          normal: "Roboto-Bold",
+          italic: "Roboto-BoldItalic",
+        },
+      },
+      Mulish: {
+        100: {
+          normal: "Mulish-Light",
+          italic: "Mulish-LightItalic",
+        },
+        200: {
+          normal: "Mulish-Light",
+          italic: "Mulish-LightItalic",
+        },
+        300: {
+          normal: "Mulish-Light",
+          italic: "Mulish-LightItalic",
+        },
+        400: {
+          normal: "Mulish-Regular",
+          italic: "Mulish-Italic",
+        },
+        500: {
+          normal: "Mulish-Medium",
+        },
+        600: {
+          normal: "Mulish-Medium",
+          italic: "Mulish-MediumItalic",
+        },
+        // Add more variants
+        700: {
+          normal: "Mulish-Bold",
+        },
+        800: {
+          normal: "Mulish-Bold",
+          italic: "Mulish-BoldItalic",
+        },
+        900: {
+          normal: "Mulish-Bold",
+          italic: "Mulish-BoldItalic",
+        },
+      },
+    },
+
+    // Make sure values below matches any of the keys in `fontConfig`
+    fonts: {
+      heading: "Roboto",
+      body: "Roboto",
+      mono: "Mulish",
+    },
+    config: {
+      // Changing initialColorMode to 'dark'
+      initialColorMode: "dark",
+    },
   },
 });
 
-export default ThemeConfig
+export default ThemeConfig;
