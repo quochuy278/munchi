@@ -1,12 +1,12 @@
 import { Text } from "native-base";
 import { View } from "react-native";
 
-const ProfileScreen = () => {
+const SearchScreen = () => {
   return (
     <View>
-      <Text>This is ProfileScreen</Text>
+      <Text>This is SearchScreen</Text>
     </View>
   );
 };
 
-export default ProfileScreen;
+export default SearchScreen;
