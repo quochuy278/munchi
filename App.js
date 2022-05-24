@@ -1,11 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { Fragment, useState, useRef } from "react";
 import { StyleSheet, Text, View, Image, Animated } from "react-native";
-import { LoginScreen, GuestScreen } from "./screens";
+import { LoginScreen, GuestScreen, LoadingScreen, LocationScreen } from "./screens";
 import AppIntroSlider from "react-native-app-intro-slider";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NativeBaseProvider, extendTheme } from "native-base";
+
+
 import ThemeConfig from "./theme/themeConfig";
 
 const slides = [
@@ -18,11 +20,12 @@ const slides = [
   },
 ];
 const Stack = createNativeStackNavigator();
-const customTheme = extendTheme(ThemeConfig)
+
+const customTheme = extendTheme(ThemeConfig);
 export default function App() {
   const [showRealApp, setShowRealApp] = useState(false);
   // const fadeAnim = useRef(new Animated.Value(2)).current;
-  
+
   const renderItem = ({ item }) => {
     return (
       <View
@@ -54,17 +57,29 @@ export default function App() {
         <NativeBaseProvider theme={customTheme}>
           <NavigationContainer>
             <Stack.Navigator initialRouteName="Login">
-              <Stack.Screen
-                options={{ headerShown: false }}
-                name="Login"
-                component={LoginScreen}
-                theme={customTheme}
-              />
-              <Stack.Screen
-                name="Guest"
-                component={GuestScreen}
-                options={{ headerShown: false }}
-              />
+              <Stack.Group>
+                <Stack.Screen
+                  options={{ headerShown: false }}
+                  name="Login"
+                  component={LoginScreen}
+                  theme={customTheme}
+                />
+                <Stack.Screen
+                  name="Guest"
+                  component={GuestScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Loading"
+                  component={LoadingScreen}
+                  options={{ headerShown: false }}
+                />
+                <Stack.Screen
+                  name="Location"
+                  component={LocationScreen}
+                  options={{ headerShown: false }}
+                />
+              </Stack.Group>
             </Stack.Navigator>
             <StatusBar />
           </NavigationContainer>

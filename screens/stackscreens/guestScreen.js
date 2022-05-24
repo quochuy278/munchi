@@ -11,12 +11,15 @@ import {
   Button,
 } from "native-base";
 
-const GuestScreen = () => {
+const GuestScreen = ({ navigation }) => {
   const [open, setOpen] = useState(false);
   const [country, setCountry] = useState("Finland");
   const [checked, setChecked] = useState(false);
   const checkBoxHandle = () => {
     setChecked(!checked);
+  };
+  const pressHandler = () => {
+    navigation.navigate('Loading')
   };
   return (
     <Wrapper>
@@ -29,7 +32,7 @@ const GuestScreen = () => {
         >
           Welcome 🤗
         </Text>
-        <View style={{bottom:"20%"}}>
+        <View style={{ bottom: "20%" }}>
           <Text
             style={styles.text}
             fontFamily="mono"
@@ -80,9 +83,12 @@ const GuestScreen = () => {
             </Checkbox>
           </View>
         </View>
-        <Button style={[
-          styles.btn,
-        ]}>
+        <Button
+          style={styles.btn}
+          disabled={checked ? false : true}
+          colorScheme={checked ? "red" : "grey"}
+          onPress={pressHandler}
+        >
           Continue
         </Button>
       </FormControl>
