@@ -1,11 +1,14 @@
 import { Text } from "native-base";
 import { View } from "react-native";
+import Wrapper from "../../containers/Wrapper";
 
 const DummyScreen = () => {
   return (
-    <View>
-      <Text>This is DummyScreen</Text>
-    </View>
+    <Wrapper>
+      <View>
+        <Text>This is DummyScreen</Text>
+      </View>
+    </Wrapper>
   );
 };
 

@@ -1,11 +1,14 @@
 import { Text } from "native-base";
 import { View } from "react-native";
+import Wrapper from "../../containers/Wrapper";
 
 const SearchScreen = () => {
   return (
-    <View>
-      <Text>This is SearchScreen</Text>
-    </View>
+    <Wrapper>
+      <View>
+        <Text>This is SearchScreen</Text>
+      </View>
+    </Wrapper>
   );
 };
 

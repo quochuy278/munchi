@@ -16,11 +16,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NativeBaseProvider, extendTheme } from "native-base";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
+import HomeHeader from "./containers/HomeHeader";
 import ThemeConfig from "./theme/themeConfig";
-
+import { getHeaderTitle } from "@react-navigation/elements";
+import { Center } from "native-base";
 // Icons
 import { AntDesign, MaterialCommunityIcons } from "@expo/vector-icons";
+
 const slides = [
   {
     key: 2,
@@ -85,7 +87,17 @@ export default function App() {
                       size={size}
                     />
                   ),
+                  headerStyle: styles.homeheader,
+                  header: ({ navigation, route, options }) => {
+                    const title = getHeaderTitle(options, route.name);
+                    return (
+                      <Center>
+                        <HomeHeader title={title} style={options.headerStyle} />
+                      </Center>
+                    );
+                  },
                 }}
+
               />
               <Tab.Screen
                 name="Search"
@@ -178,5 +190,13 @@ const styles = StyleSheet.create({
   introImage: {
     width: 345,
     height: 220,
+  },
+  homeheader: {
+    backgroundColor: "#fff",
+    height: 100,
+    width: "100%",
+    display:"flex",
+    justifyContent: "center",
+    alignItems: "center"
   },
 });
