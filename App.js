@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { Fragment, useState, useRef } from "react";
-import { StyleSheet, Text, View, Image, Animated } from "react-native";
+import { StyleSheet, Text, View, Image, Animated, PixelRatio } from "react-native";
 import {
   LoginScreen,
   GuestScreen,
@@ -16,7 +16,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NativeBaseProvider, extendTheme } from "native-base";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import HomeHeader from "./containers/HomeHeader";
+import HomeHeader from "./components/UI/headers/HomeHeader";
 import ThemeConfig from "./theme/themeConfig";
 import { getHeaderTitle } from "@react-navigation/elements";
 import { Center } from "native-base";
@@ -192,8 +192,8 @@ const styles = StyleSheet.create({
     height: 220,
   },
   homeheader: {
-    backgroundColor: "#fff",
-    height: 100,
+    backgroundColor: "#FFF",
+    height: PixelRatio.getPixelSizeForLayoutSize(68),
     width: "100%",
     display:"flex",
     justifyContent: "center",

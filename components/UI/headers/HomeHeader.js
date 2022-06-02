@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, PixelRatio } from "react-native";
 import {
   HStack,
   IconButton,
@@ -12,9 +12,12 @@ import {
   Button,
 } from "native-base";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
-import Cart from "../components/UI/Icons/cart";
+import Cart from "../Icons/cart";
+import { useState } from "react";
 
 const HomeHeader = ({ style, title }) => {
+  const [active,setActive] = useState(false)
+  const [screen,setScreen] = useState('')
   return (
     <View style={style}>
       <VStack style={styles.container}>
@@ -73,7 +76,6 @@ const HomeHeader = ({ style, title }) => {
 
         <Input
           size="lg"
-          colorScheme="gray"
           placeholder="Search"
           variant="filled"
           py="2"
@@ -88,7 +90,7 @@ const HomeHeader = ({ style, title }) => {
           InputLeftElement={
             <Icon
               ml="2"
-              size="5"
+              size="4"
               color="gray.400"
               as={<Ionicons name="ios-search" />}
             />
@@ -96,23 +98,40 @@ const HomeHeader = ({ style, title }) => {
         />
         <VStack>
           <Flex style={styles.btnContainer}>
-            <Button.Group
-              variant={"outline"}
-              space={4}
-              _text={{ color: "gray.400" }}
+            <Button
+            colorScheme="red"
+              style={active ? styles.btnActive : styles.btn}
+              onPress={() => {
+                setActive(!active);
+              }}
             >
-              <Button style={styles.btn}>
-                <Text style={styles.textBtn}>
-                  <Text>Delivery</Text>
-                </Text>
-              </Button>
-              <Button style={styles.btn}>
-                <Text style={styles.textBtn}>Self pick-up</Text>
-              </Button>
-              <Button style={styles.btn}>
-                <Text style={styles.textBtn}>Eat in</Text>
-              </Button>
-            </Button.Group>
+              <Text
+                style={active ? styles.textBtnActive : styles.textBtn}
+                fontFamily="body"
+              >
+                Delivery
+              </Text>
+            </Button>
+            <Button
+              style={styles.btn}
+              onPress={() => {
+                setActive(!active);
+              }}
+            >
+              <Text style={styles.textBtn} fontFamily="body">
+                Self pick-up
+              </Text>
+            </Button>
+            <Button
+              style={styles.btn}
+              onPress={() => {
+                setActive(!active);
+              }}
+            >
+              <Text style={styles.textBtn} fontFamily="body">
+                Eat in
+              </Text>
+            </Button>
           </Flex>
         </VStack>
       </VStack>
@@ -123,9 +142,7 @@ export default HomeHeader;
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 60,
     width: "85%",
-    height: 70,
   },
   title: {
     color: "#FF3537",
@@ -155,18 +172,45 @@ const styles = StyleSheet.create({
   },
   btnContainer: {
     width: "100%",
-    justifyContent: "space-evenly",
+    flexDirection: "row",
+    justifyContent: "space-between",
     alignItems: "center",
     marginTop: 20,
   },
   textBtn: {
-      lineHeight: 14,
-      textAlign:"center"
+    lineHeight: 18,
+    textAlign: "center",
+    height: 20,
+    fontWeight: "700",
+    fontStyle: "normal",
+    color: "grey",
+    fontSize: 14,
+    paddingRight: 15,
+    paddingLeft: 15,
   },
   btn: {
-    backgroundColor: "red",
     borderRadius: 30,
-    height: 35,
-    width: 100
+    height: 31,
+    fontSize: 15,
+    width: "auto",
+    backgroundColor: "#F5F5F5",
+  },
+  btnActive: {
+    backgroundColor: "#FF3537",
+    borderRadius: 30,
+    height: 31,
+    fontSize: 15,
+    width: "auto",
+  },
+  textBtnActive: {
+    lineHeight: 18,
+    textAlign: "center",
+    height: 20,
+    fontWeight: "700",
+    fontStyle: "normal",
+    color: "white",
+    fontSize: 14,
+    paddingRight: 15,
+    paddingLeft: 15,
   },
 });

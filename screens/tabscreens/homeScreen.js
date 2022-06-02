@@ -1,23 +1,33 @@
-import { Text } from "native-base"
+import { Flex, Text } from "native-base"
 import { View, StyleSheet } from "react-native";
-import Wrapper from "../../containers/Wrapper"
+
 
 const HomeScreen = () => {
     return (
-      <Wrapper>
-        <View >
-          <Text>This is home page</Text>
+      <Flex style={styles.container}>
+        <View style={styles.textContainers}>
+          <Text style={styles.text}>This is home page</Text>
         </View>
-      </Wrapper>
+      </Flex>
     );
 }
 
 export default HomeScreen
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: "#fff",
-        height: "100%",
-        width: "100%"
-    }
-})
+  container: {
+   width: "100%",
+   height: "100%",
+   backgroundColor:"white",
+  },
+  textContainers:{
+    backgroundColor: "black",
+    marginBottom:40
+  },  
+  text: {
+    lineHeight: 30,
+    paddingBottom: 30,
+    marginBottom: 50,
+    fontSize: 30,
+  },
+});
