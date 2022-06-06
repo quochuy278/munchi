@@ -192,11 +192,9 @@ const styles = StyleSheet.create({
     height: 220,
   },
   homeheader: {
-    backgroundColor: "#FFF",
-    height: PixelRatio.getPixelSizeForLayoutSize(68),
     width: "100%",
-    display:"flex",
-    justifyContent: "center",
-    alignItems: "center"
+    marginTop: 30,
+    paddingLeft: 10,
+    height: 100
   },
 });
