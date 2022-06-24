@@ -1,5 +1,5 @@
 import { Flex, Text, Input, Icon, VStack, Button } from "native-base";
-import { StyleSheet, SafeAreaView } from "react-native";
+import { StyleSheet, SafeAreaView, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import DeliveryScreen from "./deliveryScreen";
@@ -34,10 +34,16 @@ const HomeScreen = () => {
             />
           }
         />
+        <Image
+          source={require("../../../assets/main-image.jpg")}
+          alt="food"
+          style={styles.imgage}
+        />
         <Tab.Navigator
           initialRouteName="Delivery"
           screenOptions={{
             tabBarActiveTintColor: "white",
+            tabBarInactiveTintColor: "#ADADAD",
             tabBarLabelStyle: {
               width: 100,
               height: 30,
@@ -48,22 +54,23 @@ const HomeScreen = () => {
               fontSize: 14,
             },
             tabBarStyle: {
-             elevation:0
+              elevation: 0,
             },
-            tabBarInactiveTintColor: "#ADADAD",
+            tabBarItemStyle: {
+              marign: 0,
+              padding: 0,
+            },
             tabBarPressColor: "white",
             tabBarIndicatorStyle: {
-              backgroundColor: "#FF3537",
+              backgroundColor: "black",
               height: 25,
               borderRadius: 30,
-              marginBottom: 16,
+              marginBottom: 13,
               marginLeft: 10,
               width: 105,
             },
-            tabBarActiveBackgroundColor: "blue",
             swipeEnabled: false,
           }}
-        
         >
           <Tab.Screen name="Delivery" component={DeliveryScreen} />
           <Tab.Screen name="Self pick-up" component={PickUpScreen} />
@@ -107,5 +114,11 @@ const styles = StyleSheet.create({
     height: 20,
     lineHeight: 14,
     textAlignVertical: "center",
+  },
+  imgage: {
+    width: 372,
+    height: 202,
+    marginTop: 15,
+   
   },
 });
